@@ -1,0 +1,331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F81753821C3960C0000685DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753811C3960C0000685DF /* main.m */; };
+		F81753851C3960C0000685DF /* PDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753841C3960C0000685DF /* PDSAppDelegate.m */; };
+		F817538D1C3960C0000685DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F817538C1C3960C0000685DF /* Assets.xcassets */; };
+		F81753901C3960C0000685DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F817538E1C3960C0000685DF /* LaunchScreen.storyboard */; };
+		F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F817539E1C39646F000685DF /* PDSMainViewController.m */; };
+		F81753A11C39646F000685DF /* PDSMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F817539F1C39646F000685DF /* PDSMainViewController.xib */; };
+		F81753AA1C396A72000685DF /* PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753A91C396A72000685DF /* PDSImage.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F817537D1C3960C0000685DF /* PDSImageControlDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDSImageControlDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81753811C3960C0000685DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F81753831C3960C0000685DF /* PDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDSAppDelegate.h; sourceTree = "<group>"; };
+		F81753841C3960C0000685DF /* PDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDSAppDelegate.m; sourceTree = "<group>"; };
+		F817538C1C3960C0000685DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F817538F1C3960C0000685DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F81753911C3960C0000685DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F817539D1C39646F000685DF /* PDSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSMainViewController.h; sourceTree = "<group>"; };
+		F817539E1C39646F000685DF /* PDSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSMainViewController.m; sourceTree = "<group>"; };
+		F817539F1C39646F000685DF /* PDSMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDSMainViewController.xib; sourceTree = "<group>"; };
+		F81753A81C396A72000685DF /* PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSImage.h; sourceTree = "<group>"; };
+		F81753A91C396A72000685DF /* PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSImage.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F817537A1C3960C0000685DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F81753741C3960C0000685DF = {
+			isa = PBXGroup;
+			children = (
+				F817537F1C3960C0000685DF /* PDSImageControlDemo */,
+				F817537E1C3960C0000685DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F817537E1C3960C0000685DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F817537D1C3960C0000685DF /* PDSImageControlDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F817537F1C3960C0000685DF /* PDSImageControlDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F817538E1C3960C0000685DF /* LaunchScreen.storyboard */,
+				F817538C1C3960C0000685DF /* Assets.xcassets */,
+				F81753831C3960C0000685DF /* PDSAppDelegate.h */,
+				F81753841C3960C0000685DF /* PDSAppDelegate.m */,
+				F817539C1C39646F000685DF /* DemoClass */,
+				F81753A71C396A72000685DF /* PDSImageControl */,
+				F81753A31C39647A000685DF /* Library */,
+				F81753911C3960C0000685DF /* Info.plist */,
+				F81753801C3960C0000685DF /* Supporting Files */,
+			);
+			path = PDSImageControlDemo;
+			sourceTree = "<group>";
+		};
+		F81753801C3960C0000685DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F81753811C3960C0000685DF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F817539C1C39646F000685DF /* DemoClass */ = {
+			isa = PBXGroup;
+			children = (
+				F817539D1C39646F000685DF /* PDSMainViewController.h */,
+				F817539E1C39646F000685DF /* PDSMainViewController.m */,
+				F817539F1C39646F000685DF /* PDSMainViewController.xib */,
+			);
+			path = DemoClass;
+			sourceTree = "<group>";
+		};
+		F81753A31C39647A000685DF /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		F81753A71C396A72000685DF /* PDSImageControl */ = {
+			isa = PBXGroup;
+			children = (
+				F81753A81C396A72000685DF /* PDSImage.h */,
+				F81753A91C396A72000685DF /* PDSImage.m */,
+			);
+			path = PDSImageControl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F817537C1C3960C0000685DF /* PDSImageControlDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F81753941C3960C0000685DF /* Build configuration list for PBXNativeTarget "PDSImageControlDemo" */;
+			buildPhases = (
+				F81753791C3960C0000685DF /* Sources */,
+				F817537A1C3960C0000685DF /* Frameworks */,
+				F817537B1C3960C0000685DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PDSImageControlDemo;
+			productName = PDSImageControlDemo;
+			productReference = F817537D1C3960C0000685DF /* PDSImageControlDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F81753751C3960C0000685DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PDS;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = w91379137;
+				TargetAttributes = {
+					F817537C1C3960C0000685DF = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = F81753781C3960C0000685DF /* Build configuration list for PBXProject "PDSImageControlDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F81753741C3960C0000685DF;
+			productRefGroup = F817537E1C3960C0000685DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F817537C1C3960C0000685DF /* PDSImageControlDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F817537B1C3960C0000685DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81753901C3960C0000685DF /* LaunchScreen.storyboard in Resources */,
+				F81753A11C39646F000685DF /* PDSMainViewController.xib in Resources */,
+				F817538D1C3960C0000685DF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F81753791C3960C0000685DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81753851C3960C0000685DF /* PDSAppDelegate.m in Sources */,
+				F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */,
+				F81753821C3960C0000685DF /* main.m in Sources */,
+				F81753AA1C396A72000685DF /* PDSImage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F817538E1C3960C0000685DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F817538F1C3960C0000685DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F81753921C3960C0000685DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F81753931C3960C0000685DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F81753951C3960C0000685DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PDSImageControlDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.a.PDSImageControlDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F81753961C3960C0000685DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PDSImageControlDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.a.PDSImageControlDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F81753781C3960C0000685DF /* Build configuration list for PBXProject "PDSImageControlDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F81753921C3960C0000685DF /* Debug */,
+				F81753931C3960C0000685DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F81753941C3960C0000685DF /* Build configuration list for PBXNativeTarget "PDSImageControlDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F81753951C3960C0000685DF /* Debug */,
+				F81753961C3960C0000685DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F81753751C3960C0000685DF /* Project object */;
+}
