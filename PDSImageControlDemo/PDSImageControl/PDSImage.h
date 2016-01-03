@@ -8,7 +8,15 @@
 
 @interface PDSImage : UIImage
 
-+(UIImage *)makePureColorImage:(CGSize)size
-                         Color:(UIColor *)color;
+#pragma mark - 做純色圖
++ (UIImage *)makePureColorImage:(CGSize)size
+                          Color:(UIColor *)color;
+
+#pragma mark - 做漸層圖
++ (UIImage *)makeGradientImage:(CGSize)size
+                    StartPoint:(CGPoint)startPoint
+                      EndPoint:(CGPoint)endPoint
+                        Colors:(NSArray *)colors
+                      Location:(NSArray *)locations;
 
 @end

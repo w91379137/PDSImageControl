@@ -7,8 +7,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PDSMainViewController : UIViewController
-{
-    UIImageView *imageView;
-}
 
 @end
