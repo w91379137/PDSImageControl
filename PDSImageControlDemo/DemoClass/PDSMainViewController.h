@@ -7,5 +7,11 @@
 #import <UIKit/UIKit.h>
 
 @interface PDSMainViewController : UIViewController
+{
+    CGSize imageSize;
+    CGSize imageViewSize;
+    
+    NSInteger k;
+}
 
 @end
