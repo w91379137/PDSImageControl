@@ -1,12 +1,12 @@
 //
-//  PDSImage.h
+//  UIImage+PDSImage.h
 //
-//  Created by w91379137 on 2016/1/3.
+//  Created by w91379137 on 2016/1/22.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface PDSImage : UIImage
+@interface UIImage (PDSImage)
 
 #pragma mark - 產生純色圖
 + (UIImage *)makePureColorImage:(CGSize)size
@@ -36,9 +36,5 @@
 #pragma mark - 切圖
 + (UIImage *)clipImage:(UIImage *)image
                   Path:(UIBezierPath *)path;
-
-#pragma mark - 中心轉換
-+ (CGPoint)originOfCenterAlignImage:(UIImage *)image
-                    BackgroundImage:(UIImage *)backgroundImage;
 
 @end

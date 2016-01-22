@@ -1,12 +1,12 @@
 //
-//  PDSImage.m
+//  UIImage+PDSImage.m
 //
-//  Created by w91379137 on 2016/1/3.
+//  Created by w91379137 on 2016/1/22.
 //
 
-#import "PDSImage.h"
+#import "UIImage+PDSImage.h"
 
-@implementation PDSImage
+@implementation UIImage (PDSImage)
 
 #pragma mark - 產生純色圖
 + (UIImage *)makePureColorImage:(CGSize)size
@@ -157,16 +157,6 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
-}
-
-#pragma mark - 中心轉換
-+ (CGPoint)originOfCenterAlignImage:(UIImage *)image
-                    BackgroundImage:(UIImage *)backgroundImage
-{
-    CGPoint point =
-    CGPointMake((backgroundImage.size.width - image.size.width) / 2,
-                (backgroundImage.size.height - image.size.height) / 2);
-    return point;
 }
 
 #pragma mark - 資料處理

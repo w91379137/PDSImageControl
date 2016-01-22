@@ -5,7 +5,7 @@
 //
 
 #import "PDSMainViewController.h"
-#import "PDSImage.h"
+#import "PDSImageControl.h"
 
 @interface PDSMainViewController ()
 
@@ -38,40 +38,35 @@
     
     {
         pureImage =
-        [PDSImage makePureColorImage:imageSize
-                               Color:demoColor1];
+        [UIImage makePureColorImage:imageSize
+                              Color:demoColor1];
         [self factoryImageView].image = pureImage;
     }
     {
         gradientImage =
-        [PDSImage makeGradientImage:imageSize
-                         StartPoint:CGPointMake(0, 0)
-                           EndPoint:CGPointMake(imageSize.width, imageSize.height)
-                             Colors:@[demoColor1,demoColor2,demoColor3,demoColor4]
-                           Location:@[@0,@0.4,@0.6,@1]];
+        [UIImage makeGradientImage:imageSize
+                        StartPoint:CGPointMake(0, imageSize.height)
+                          EndPoint:CGPointMake(imageSize.width, 0)
+                            Colors:@[demoColor1,demoColor2,demoColor3,demoColor4]
+                          Location:@[@0,@0.4,@0.6,@1]];
         [self factoryImageView].image = gradientImage;
     }
     {
         UIImage *image1 =
-        [PDSImage makePureColorImage:CGSizeMake(30, 30)
-                               Color:demoColor2];
+        [UIImage makePureColorImage:CGSizeMake(30, 30)
+                              Color:demoColor2];
         
         {
             [self factoryImageView].image =
-            [PDSImage addImage:image1
-               BackgroundImage:pureImage
-                        Origin:CGPointZero];
+            [UIImage addImage:image1
+              BackgroundImage:pureImage
+                       Origin:CGPointZero];
             
         }
         {
-            CGPoint point =
-            [PDSImage originOfCenterAlignImage:image1
-                               BackgroundImage:pureImage];
-            
-            [self factoryImageView].image =
-            [PDSImage addImage:image1
-               BackgroundImage:pureImage
-                        Origin:point];
+            PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:pureImage];
+            [imageControl addImageAtCenter:image1];
+            [self factoryImageView].image = imageControl.image;
         }
     }
     {
@@ -79,9 +74,9 @@
         float period = 10.0;
         
         UIImage *image =
-        [PDSImage makeRoundedImage:gradientImage
-                           Corners:UIRectCornerAllCorners
-                            Radius:radius];
+        [UIImage makeRoundedImage:gradientImage
+                          Corners:UIRectCornerAllCorners
+                           Radius:radius];
         
         {
             [self factoryImageView].image = image;
@@ -98,61 +93,49 @@
         }
     }
     {
-        UIImage *image = pureImage;
+        PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:pureImage];
         for (NSInteger x = 0; x < 5; x++) {
             for (NSInteger y = 0; y < 5; y++) {
-                image =
-                [PDSImage addImage:[PDSImage makePureColorImage:CGSizeMake(10, 10)
-                                                          Color:[self randomColor]]
-                   BackgroundImage:image
-                            Origin:CGPointMake(x * 10, y * 10)];
+                [imageControl addImage:[UIImage makePureColorImage:CGSizeMake(10, 10)
+                                                        Color:[self randomColor]]
+                                Origin:CGPointMake(x * 10, y * 10)];
             }
         }
-        [self factoryImageView].image = image;
+        [self factoryImageView].image = imageControl.image;
         
         float period = 10.0;
         {
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
-            [image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
-                                  resizingMode:UIImageResizingModeTile];
+            [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
+                                               resizingMode:UIImageResizingModeTile];
         }
         {
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
-            [image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
-                                  resizingMode:UIImageResizingModeStretch];
+            [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
+                                               resizingMode:UIImageResizingModeStretch];
         }
     }
     {
         //http://blog.csdn.net/lwjok2007/article/details/47184911
         UIImage *imageA =
-        [PDSImage makeTextImage:@"A"
+        [UIImage makeTextImage:@"A"
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
                                   NSStrokeColorAttributeName:[self randomColor]}];
         [self factoryImageView].image = imageA;
         
         UIImage *imageB =
-        [PDSImage makeTextImage:@"B"
+        [UIImage makeTextImage:@"B"
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:10 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
                                   NSStrokeColorAttributeName:[self randomColor]}];
         [self factoryImageView].image = imageB;
         
         {
-            UIImage *image = gradientImage;
-            image = [PDSImage addImage:imageA
-                       BackgroundImage:image
-                                Origin:CGPointZero];
-            
-            CGPoint point =
-            [PDSImage originOfCenterAlignImage:imageB
-                               BackgroundImage:image];
-            
-            image = [PDSImage addImage:imageB
-                       BackgroundImage:image
-                                Origin:point];
-            
-            [self factoryImageView].image = image;
+            PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:gradientImage];
+            [imageControl addImage:imageA Origin:CGPointZero];
+            [imageControl addImageAtCenter:imageB];
+            [self factoryImageView].image = imageControl.image;
         }
     }
 }
@@ -190,8 +173,9 @@
 
 - (CGPoint)centerOfImageView:(NSInteger)number
 {
-    float x = (number % 3) + 0.5;
-    float y = floorf(number / 3.0) + 0.5;
+    static NSInteger lineNumber = 4;
+    float x = (number % lineNumber) + 0.5;
+    float y = floorf(number / (float)lineNumber) + 0.5;
     return CGPointMake(x * (imageViewSize.width + 1) + 20,
                        y * (imageViewSize.height + 1) + 20);
 }

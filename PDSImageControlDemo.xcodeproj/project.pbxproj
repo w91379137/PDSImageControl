@@ -13,7 +13,8 @@
 		F81753901C3960C0000685DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F817538E1C3960C0000685DF /* LaunchScreen.storyboard */; };
 		F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F817539E1C39646F000685DF /* PDSMainViewController.m */; };
 		F81753A11C39646F000685DF /* PDSMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F817539F1C39646F000685DF /* PDSMainViewController.xib */; };
-		F81753AA1C396A72000685DF /* PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753A91C396A72000685DF /* PDSImage.m */; };
+		F81753AA1C396A72000685DF /* PDSImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753A91C396A72000685DF /* PDSImageControl.m */; };
+		F8D075821C525FB30015B219 /* UIImage+PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D075811C525FB30015B219 /* UIImage+PDSImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,10 @@
 		F817539D1C39646F000685DF /* PDSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSMainViewController.h; sourceTree = "<group>"; };
 		F817539E1C39646F000685DF /* PDSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSMainViewController.m; sourceTree = "<group>"; };
 		F817539F1C39646F000685DF /* PDSMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDSMainViewController.xib; sourceTree = "<group>"; };
-		F81753A81C396A72000685DF /* PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSImage.h; sourceTree = "<group>"; };
-		F81753A91C396A72000685DF /* PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSImage.m; sourceTree = "<group>"; };
+		F81753A81C396A72000685DF /* PDSImageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSImageControl.h; sourceTree = "<group>"; };
+		F81753A91C396A72000685DF /* PDSImageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSImageControl.m; sourceTree = "<group>"; };
+		F8D075801C525FB30015B219 /* UIImage+PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PDSImage.h"; sourceTree = "<group>"; };
+		F8D075811C525FB30015B219 /* UIImage+PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDSImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +105,10 @@
 		F81753A71C396A72000685DF /* PDSImageControl */ = {
 			isa = PBXGroup;
 			children = (
-				F81753A81C396A72000685DF /* PDSImage.h */,
-				F81753A91C396A72000685DF /* PDSImage.m */,
+				F81753A81C396A72000685DF /* PDSImageControl.h */,
+				F81753A91C396A72000685DF /* PDSImageControl.m */,
+				F8D075801C525FB30015B219 /* UIImage+PDSImage.h */,
+				F8D075811C525FB30015B219 /* UIImage+PDSImage.m */,
 			);
 			path = PDSImageControl;
 			sourceTree = "<group>";
@@ -181,8 +186,9 @@
 			files = (
 				F81753851C3960C0000685DF /* PDSAppDelegate.m in Sources */,
 				F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */,
+				F8D075821C525FB30015B219 /* UIImage+PDSImage.m in Sources */,
 				F81753821C3960C0000685DF /* main.m in Sources */,
-				F81753AA1C396A72000685DF /* PDSImage.m in Sources */,
+				F81753AA1C396A72000685DF /* PDSImageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
