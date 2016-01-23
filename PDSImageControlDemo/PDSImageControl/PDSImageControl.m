@@ -33,15 +33,92 @@
 - (void)addImageAtCenter:(UIImage *)image
 {
     if (self.image) {
-        
-        CGPoint point =
-        [PDSImageControl originOfCenterAlignImage:image
-                                  BackgroundImage:self.image];
-        
         self.image =
         [UIImage addImage:image
           BackgroundImage:self.image
-                   Origin:point];
+                   Origin:[PDSImageControl originOfCenterAlignImage:image
+                                                    BackgroundImage:self.image]];
+    }
+}
+
+#pragma mark - 混合
+- (void)addTexture:(UIImage *)textureImage
+{
+    if (self.image) {
+        self.image =
+        [UIImage addTextureImage:textureImage
+                       MainImage:self.image];
+    }
+}
+
+- (void)addTexture:(UIImage *)textureImage
+               mode:(CGBlendMode)mode
+{
+    if (self.image) {
+        self.image =
+        [UIImage addTextureImage:textureImage
+                       MainImage:self.image
+                            Mode:mode];
+    }
+}
+
+#pragma mark - 圓角
+- (void)addCorners:(UIRectCorner)corners
+             Radius:(float)radius
+{
+    if (self.image) {
+        self.image =
+        [UIImage addRoundedImage:self.image
+                          Corners:corners
+                           Radius:radius];
+    }
+}
+
+#pragma mark - 改大小
+- (void)reSize:(CGSize)size
+{
+    if (self.image) {
+        self.image =
+        [UIImage reSizeImage:self.image
+                        Size:size];
+    }
+}
+
+- (void)reSizeMaxLength:(CGFloat)length
+{
+    if (self.image) {
+        self.image =
+        [UIImage reSizeImage:self.image
+                   maxLength:length];
+    }
+}
+
+#pragma mark - 改顏色
+- (void)changeColor:(UIColor *)color
+{
+    if (self.image) {
+        self.image =
+        [UIImage changeImage:self.image
+                       Color:color];
+    }
+}
+
+#pragma mark - 切圖
+- (void)subImageRect:(CGRect)rect
+{
+    if (self.image) {
+        self.image =
+        [UIImage subImage:self.image
+                     Rect:rect];
+    }
+}
+
+- (void)clipImagePath:(UIBezierPath *)path
+{
+    if (self.image) {
+        self.image =
+        [UIImage clipImage:self.image
+                      Path:path];
     }
 }
 

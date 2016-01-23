@@ -23,17 +23,45 @@
                         Colors:(NSArray *)colors
                       Location:(NSArray *)locations;
 
+#pragma mark - 拍圖
++ (UIImage *)makeImageWithView:(UIView *)view;
+
 #pragma mark - 貼圖
 + (UIImage *)addImage:(UIImage *)image
       BackgroundImage:(UIImage *)backgroundImage
                Origin:(CGPoint)origin;
 
+#pragma mark - 混合
++ (UIImage *)addTextureImage:(UIImage *)textureImage
+                   MainImage:(UIImage *)mainImage;
+
++ (UIImage *)addTextureImage:(UIImage *)textureImage
+                   MainImage:(UIImage *)mainImage
+                        Mode:(CGBlendMode)mode;
+
++ (UIImage *)maskImage:(UIImage *)image
+              withMask:(UIImage *)mask;
+
 #pragma mark - 圓角
-+ (UIImage *)makeRoundedImage:(UIImage *)image
-                      Corners:(UIRectCorner)corners
-                       Radius:(NSInteger)radius;
++ (UIImage *)addRoundedImage:(UIImage *)image
+                     Corners:(UIRectCorner)corners
+                      Radius:(float)radius;
+
+#pragma mark - 改大小
++ (UIImage *)reSizeImage:(UIImage *)image
+                    Size:(CGSize)size;
+
++ (UIImage *)reSizeImage:(UIImage *)image
+               maxLength:(CGFloat)length;
+
+#pragma mark - 改顏色
++ (UIImage *)changeImage:(UIImage *)image
+                   Color:(UIColor *)color;
 
 #pragma mark - 切圖
++ (UIImage *)subImage:(UIImage *)image
+                 Rect:(CGRect)rect;
+
 + (UIImage *)clipImage:(UIImage *)image
                   Path:(UIBezierPath *)path;
 

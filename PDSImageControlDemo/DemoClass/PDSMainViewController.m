@@ -6,6 +6,7 @@
 
 #import "PDSMainViewController.h"
 #import "PDSImageControl.h"
+#import "UIColor+PDSImage.h"
 
 @interface PDSMainViewController ()
 
@@ -30,8 +31,8 @@
     
     UIColor *demoColor1 = [UIColor colorWithRed:.1 green:arc4random_uniform(255) / 255.0f blue:arc4random_uniform(255) / 255.0f alpha:.8];
     UIColor *demoColor2 = [UIColor colorWithRed:.9 green:arc4random_uniform(255) / 255.0f blue:arc4random_uniform(255) / 255.0f alpha:.8];
-    UIColor *demoColor3 = [self randomColor];
-    UIColor *demoColor4 = [self randomColor];
+    UIColor *demoColor3 = [UIColor randomColor];
+    UIColor *demoColor4 = [UIColor randomColor];
     
     UIImage *pureImage;
     UIImage *gradientImage;
@@ -73,22 +74,20 @@
         float radius = 25.0;
         float period = 10.0;
         
-        UIImage *image =
-        [UIImage makeRoundedImage:gradientImage
-                          Corners:UIRectCornerAllCorners
-                           Radius:radius];
+        PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:gradientImage];
+        [imageControl addCorners:UIRectCornerAllCorners Radius:radius];
         
         {
-            [self factoryImageView].image = image;
+            [self factoryImageView].image = imageControl.image;
         }
         {
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
-            [image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
+            [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period,    period, period)
                                   resizingMode:UIImageResizingModeTile];
         }
         {
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
-            [image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
+            [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
                                   resizingMode:UIImageResizingModeStretch];
         }
     }
@@ -97,7 +96,7 @@
         for (NSInteger x = 0; x < 5; x++) {
             for (NSInteger y = 0; y < 5; y++) {
                 [imageControl addImage:[UIImage makePureColorImage:CGSizeMake(10, 10)
-                                                        Color:[self randomColor]]
+                                                        Color:[UIColor randomColor]]
                                 Origin:CGPointMake(x * 10, y * 10)];
             }
         }
@@ -121,14 +120,23 @@
         [UIImage makeTextImage:@"A"
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
-                                  NSStrokeColorAttributeName:[self randomColor]}];
+                                  NSStrokeColorAttributeName:[UIColor randomColor]}];
         [self factoryImageView].image = imageA;
+        
+        {
+            PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:imageA];
+            [imageControl changeColor:[UIColor randomColor]];
+            [self factoryImageView].image = imageControl.image;
+            
+            [imageControl subImageRect:CGRectMake(5, 10, 15, 25)];
+            [self factoryImageView].image = imageControl.image;
+        }
         
         UIImage *imageB =
         [UIImage makeTextImage:@"B"
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:10 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
-                                  NSStrokeColorAttributeName:[self randomColor]}];
+                                  NSStrokeColorAttributeName:[UIColor randomColor]}];
         [self factoryImageView].image = imageB;
         
         {
@@ -137,6 +145,24 @@
             [imageControl addImageAtCenter:imageB];
             [self factoryImageView].image = imageControl.image;
         }
+    }
+    {
+        PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:pureImage];
+        [imageControl addTexture:[UIImage imageNamed:@"shadow1.png"]];
+        [self factoryImageView].image = imageControl.image;
+        
+        {
+            [imageControl reSize:CGSizeMake(20, 20)];
+            [self factoryImageView].image = imageControl.image;
+        }
+    }
+    {
+        PDSImageControl *imageControl =
+        [[PDSImageControl alloc] initWithImage:[UIImage makeImageWithView:self.view]];
+        
+        [imageControl reSizeMaxLength:imageSize.height];
+        
+        [self factoryImageView].image = imageControl.image;
     }
 }
 
@@ -161,14 +187,6 @@
     k++;
     
     return imageView;
-}
-
-- (UIColor *)randomColor
-{
-    return [UIColor colorWithRed:arc4random_uniform(255) / 255.0f
-                           green:arc4random_uniform(255) / 255.0f
-                            blue:arc4random_uniform(255) / 255.0f
-                           alpha:0.9];
 }
 
 - (CGPoint)centerOfImageView:(NSInteger)number
