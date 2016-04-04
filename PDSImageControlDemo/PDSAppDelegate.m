@@ -13,15 +13,15 @@
 
 @implementation PDSAppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     
     PDSMainViewController *vc = [[PDSMainViewController alloc] init];
     
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *nc =
+    [[UINavigationController alloc] initWithRootViewController:vc];
     nc.navigationBarHidden = YES;
     
     [self.window setRootViewController:nc];

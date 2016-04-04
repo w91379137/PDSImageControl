@@ -5,8 +5,6 @@
 //
 
 #import "PDSMainViewController.h"
-#import "PDSImageControl.h"
-#import "UIColor+PDSImage.h"
 
 @interface PDSMainViewController ()
 
@@ -41,8 +39,11 @@
         pureImage =
         [UIImage makePureColorImage:imageSize
                               Color:demoColor1];
+        
+        #pragma 純色圖片
         [self factoryImageView].image = pureImage;
     }
+    
     {
         gradientImage =
         [UIImage makeGradientImage:imageSize
@@ -50,14 +51,18 @@
                           EndPoint:CGPointMake(imageSize.width, 0)
                             Colors:@[demoColor1,demoColor2,demoColor3,demoColor4]
                           Location:@[@0,@0.4,@0.6,@1]];
+        
+        #pragma 漸層圖片
         [self factoryImageView].image = gradientImage;
     }
+    
     {
         UIImage *image1 =
         [UIImage makePureColorImage:CGSizeMake(30, 30)
                               Color:demoColor2];
         
         {
+            #pragma 貼圖片
             [self factoryImageView].image =
             [UIImage addImage:image1
               BackgroundImage:pureImage
@@ -67,6 +72,8 @@
         {
             PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:pureImage];
             [imageControl addImageAtCenter:image1];
+            
+            #pragma 貼圖片
             [self factoryImageView].image = imageControl.image;
         }
     }
@@ -78,14 +85,17 @@
         [imageControl addCorners:UIRectCornerAllCorners Radius:radius];
         
         {
+            #pragma 圓角
             [self factoryImageView].image = imageControl.image;
         }
         {
+            #pragma 延展圓角
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
             [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period,    period, period)
                                   resizingMode:UIImageResizingModeTile];
         }
         {
+            #pragma 延展圓角
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
             [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
                                   resizingMode:UIImageResizingModeStretch];
@@ -100,15 +110,19 @@
                                 Origin:CGPointMake(x * 10, y * 10)];
             }
         }
+        
+        #pragma 磁磚
         [self factoryImageView].image = imageControl.image;
         
         float period = 10.0;
         {
+            #pragma 延展磁磚
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
             [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
                                                resizingMode:UIImageResizingModeTile];
         }
         {
+            #pragma 延展磁磚
             [self factoryImageViewContentMode:UIViewContentModeScaleAspectFill].image =
             [imageControl.image resizableImageWithCapInsets:UIEdgeInsetsMake(period, period, period, period)
                                                resizingMode:UIImageResizingModeStretch];
@@ -121,14 +135,18 @@
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
                                   NSStrokeColorAttributeName:[UIColor randomColor]}];
+        
+        #pragma 貼字
         [self factoryImageView].image = imageA;
         
         {
             PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:imageA];
             [imageControl changeColor:[UIColor randomColor]];
+            #pragma 更改顏色
             [self factoryImageView].image = imageControl.image;
             
             [imageControl subImageRect:CGRectMake(5, 10, 15, 25)];
+            #pragma 裁切
             [self factoryImageView].image = imageControl.image;
         }
         
@@ -137,32 +155,74 @@
                  FontDictionary:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:10 * [UIScreen mainScreen].scale],
                                   NSStrokeWidthAttributeName:@3,
                                   NSStrokeColorAttributeName:[UIColor randomColor]}];
+        
+        #pragma 貼字
         [self factoryImageView].image = imageB;
         
         {
             PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:gradientImage];
             [imageControl addImage:imageA Origin:CGPointZero];
             [imageControl addImageAtCenter:imageB];
+            
+            #pragma 貼字
             [self factoryImageView].image = imageControl.image;
         }
     }
     {
         PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:pureImage];
         [imageControl addTexture:[UIImage imageNamed:@"shadow1.png"]];
+        
+        #pragma 合成
         [self factoryImageView].image = imageControl.image;
         
         {
             [imageControl reSize:CGSizeMake(20, 20)];
+            
+            #pragma 改大小
             [self factoryImageView].image = imageControl.image;
         }
     }
     {
         PDSImageControl *imageControl =
         [[PDSImageControl alloc] initWithImage:[UIImage makeImageWithView:self.view]];
-        
         [imageControl reSizeMaxLength:imageSize.height];
         
+        #pragma 截圖
         [self factoryImageView].image = imageControl.image;
+        
+        {
+            CIImage *test = [CIImage imageWithCGImage:imageControl.image.CGImage];
+            
+            CIContext *context = [CIContext contextWithOptions:nil];
+            CIFilter *filter =
+            [CIFilter filterWithName:@"CIColorMonochrome"];
+            //[CIFilter filterWithName:@"CIHueAdjust"];
+            
+            [filter setDefaults];
+            [filter setValue:test forKey:kCIInputImageKey];
+            [filter setValue:
+             [CIColor colorWithRed:arc4random_uniform(255)/255.0f
+                             green:arc4random_uniform(255)/255.0f
+                              blue:arc4random_uniform(255)/255.0f
+                             alpha:1.0f]
+                               forKey: @"inputColor"];
+            //[filter setValue:[NSNumber numberWithFloat: 2.0f] forKey:@"inputAngle"];
+            //[filter setValue:[UIColor randomColor] forKey:kCIAttributeTypeColor];
+            
+            test = [filter valueForKey:kCIOutputImageKey];
+            
+            CGRect extent = [test extent];
+            CGImageRef cgImage = [context createCGImage:test fromRect:extent];
+            
+            UIImage *filteredImage =
+            [[UIImage alloc] initWithCGImage:cgImage
+                                       scale:imageControl.image.scale
+                                 orientation:imageControl.image.imageOrientation];
+            
+            #pragma 濾鏡
+            [self factoryImageView].image = filteredImage;
+        }
+        
     }
 }
 

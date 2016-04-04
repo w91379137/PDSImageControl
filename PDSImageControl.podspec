@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'PDSImageControl'
-    s.version  = '0.0.5'
+    s.version  = '0.0.6'
     s.summary  = 'Description of your projectx'
     s.license  = {
         :type => 'MIT',
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
         :git => 'https://github.com/w91379137/PDSImageControl.git',
         :tag => s.version.to_s
     }
-    s.source_files = 'PDSImageControlDemo/PDSImageControl/*{.h,.c,.m,.rtf}'
+    s.source_files = 'PDSImageControl/**/*'
     s.requires_arc = true
 
     s.platform = :ios

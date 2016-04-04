@@ -13,10 +13,10 @@
 		F81753901C3960C0000685DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F817538E1C3960C0000685DF /* LaunchScreen.storyboard */; };
 		F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F817539E1C39646F000685DF /* PDSMainViewController.m */; };
 		F81753A11C39646F000685DF /* PDSMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F817539F1C39646F000685DF /* PDSMainViewController.xib */; };
-		F81753AA1C396A72000685DF /* PDSImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F81753A91C396A72000685DF /* PDSImageControl.m */; };
+		F840430C1CB3004D0011C957 /* PDSImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F84043071CB3004D0011C957 /* PDSImageControl.m */; };
+		F840430D1CB3004D0011C957 /* UIColor+PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F84043091CB3004D0011C957 /* UIColor+PDSImage.m */; };
+		F840430E1CB3004D0011C957 /* UIImage+PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F840430B1CB3004D0011C957 /* UIImage+PDSImage.m */; };
 		F883D2D31C53870F00C0F507 /* shadow1.png in Resources */ = {isa = PBXBuildFile; fileRef = F883D2D21C53870F00C0F507 /* shadow1.png */; };
-		F883D2D61C538B9D00C0F507 /* UIColor+PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F883D2D51C538B9D00C0F507 /* UIColor+PDSImage.m */; };
-		F8D075821C525FB30015B219 /* UIImage+PDSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D075811C525FB30015B219 /* UIImage+PDSImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,13 +30,14 @@
 		F817539D1C39646F000685DF /* PDSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSMainViewController.h; sourceTree = "<group>"; };
 		F817539E1C39646F000685DF /* PDSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSMainViewController.m; sourceTree = "<group>"; };
 		F817539F1C39646F000685DF /* PDSMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDSMainViewController.xib; sourceTree = "<group>"; };
-		F81753A81C396A72000685DF /* PDSImageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSImageControl.h; sourceTree = "<group>"; };
-		F81753A91C396A72000685DF /* PDSImageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSImageControl.m; sourceTree = "<group>"; };
+		F84043061CB3004D0011C957 /* PDSImageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSImageControl.h; sourceTree = "<group>"; };
+		F84043071CB3004D0011C957 /* PDSImageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSImageControl.m; sourceTree = "<group>"; };
+		F84043081CB3004D0011C957 /* UIColor+PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PDSImage.h"; sourceTree = "<group>"; };
+		F84043091CB3004D0011C957 /* UIColor+PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PDSImage.m"; sourceTree = "<group>"; };
+		F840430A1CB3004D0011C957 /* UIImage+PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PDSImage.h"; sourceTree = "<group>"; };
+		F840430B1CB3004D0011C957 /* UIImage+PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDSImage.m"; sourceTree = "<group>"; };
+		F840430F1CB3011B0011C957 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F883D2D21C53870F00C0F507 /* shadow1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow1.png; sourceTree = "<group>"; };
-		F883D2D41C538B9D00C0F507 /* UIColor+PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PDSImage.h"; sourceTree = "<group>"; };
-		F883D2D51C538B9D00C0F507 /* UIColor+PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PDSImage.m"; sourceTree = "<group>"; };
-		F8D075801C525FB30015B219 /* UIImage+PDSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PDSImage.h"; sourceTree = "<group>"; };
-		F8D075811C525FB30015B219 /* UIImage+PDSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDSImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,9 +75,8 @@
 				F81753831C3960C0000685DF /* PDSAppDelegate.h */,
 				F81753841C3960C0000685DF /* PDSAppDelegate.m */,
 				F817539C1C39646F000685DF /* DemoClass */,
-				F81753A71C396A72000685DF /* PDSImageControl */,
+				F84043051CB3004D0011C957 /* PDSImageControl */,
 				F81753A31C39647A000685DF /* Library */,
-				F81753911C3960C0000685DF /* Info.plist */,
 				F81753801C3960C0000685DF /* Supporting Files */,
 			);
 			path = PDSImageControlDemo;
@@ -85,7 +85,9 @@
 		F81753801C3960C0000685DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F81753911C3960C0000685DF /* Info.plist */,
 				F81753811C3960C0000685DF /* main.m */,
+				F840430F1CB3011B0011C957 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -108,18 +110,18 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
-		F81753A71C396A72000685DF /* PDSImageControl */ = {
+		F84043051CB3004D0011C957 /* PDSImageControl */ = {
 			isa = PBXGroup;
 			children = (
-				F81753A81C396A72000685DF /* PDSImageControl.h */,
-				F81753A91C396A72000685DF /* PDSImageControl.m */,
-				F8D075801C525FB30015B219 /* UIImage+PDSImage.h */,
-				F8D075811C525FB30015B219 /* UIImage+PDSImage.m */,
-				F883D2D41C538B9D00C0F507 /* UIColor+PDSImage.h */,
-				F883D2D51C538B9D00C0F507 /* UIColor+PDSImage.m */,
+				F84043061CB3004D0011C957 /* PDSImageControl.h */,
+				F84043071CB3004D0011C957 /* PDSImageControl.m */,
+				F84043081CB3004D0011C957 /* UIColor+PDSImage.h */,
+				F84043091CB3004D0011C957 /* UIColor+PDSImage.m */,
+				F840430A1CB3004D0011C957 /* UIImage+PDSImage.h */,
+				F840430B1CB3004D0011C957 /* UIImage+PDSImage.m */,
 			);
 			path = PDSImageControl;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -195,10 +197,10 @@
 			files = (
 				F81753851C3960C0000685DF /* PDSAppDelegate.m in Sources */,
 				F81753A01C39646F000685DF /* PDSMainViewController.m in Sources */,
-				F8D075821C525FB30015B219 /* UIImage+PDSImage.m in Sources */,
+				F840430D1CB3004D0011C957 /* UIColor+PDSImage.m in Sources */,
 				F81753821C3960C0000685DF /* main.m in Sources */,
-				F81753AA1C396A72000685DF /* PDSImageControl.m in Sources */,
-				F883D2D61C538B9D00C0F507 /* UIColor+PDSImage.m in Sources */,
+				F840430C1CB3004D0011C957 /* PDSImageControl.m in Sources */,
+				F840430E1CB3004D0011C957 /* UIImage+PDSImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +302,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PDSImageControlDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = PDSImageControlDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -312,6 +316,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PDSImageControlDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = PDSImageControlDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
