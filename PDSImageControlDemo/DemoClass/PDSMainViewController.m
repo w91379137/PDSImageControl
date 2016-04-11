@@ -141,12 +141,17 @@
         
         {
             PDSImageControl *imageControl = [[PDSImageControl alloc] initWithImage:imageA];
-            [imageControl changeColor:[UIColor randomColor]];
+            
             #pragma 更改顏色
+            [imageControl changeColor:[UIColor randomColor]];
             [self factoryImageView].image = imageControl.image;
             
-            [imageControl subImageRect:CGRectMake(5, 10, 15, 25)];
             #pragma 裁切
+            [imageControl subImageRect:CGRectMake(5, 10, 15, 25)];
+            [self factoryImageView].image = imageControl.image;
+            
+            #pragma 旋轉
+            [imageControl rotateOrientation:UIImageOrientationLeft];
             [self factoryImageView].image = imageControl.image;
         }
         

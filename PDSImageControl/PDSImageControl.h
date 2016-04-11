@@ -38,6 +38,9 @@
 
 - (void)reSizeMaxLength:(CGFloat)length;
 
+#pragma mark - 旋轉
+- (void)rotateOrientation:(UIImageOrientation)orientation;
+
 #pragma mark - 改顏色
 - (void)changeColor:(UIColor *)color;
 

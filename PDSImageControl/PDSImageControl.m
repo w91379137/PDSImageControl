@@ -93,6 +93,16 @@
     }
 }
 
+#pragma mark - 旋轉
+- (void)rotateOrientation:(UIImageOrientation)orientation
+{
+    if (self.image) {
+        self.image =
+        [UIImage rotateImage:self.image
+                 Orientation:orientation];
+    }
+}
+
 #pragma mark - 改顏色
 - (void)changeColor:(UIColor *)color
 {

@@ -9,26 +9,46 @@
 
 @implementation UIImage (PDSImage)
 
+#pragma mark - Public
++ (void)beginImageContextSize:(CGSize)size
+{
+    if (CGSizeEqualToSize(size, CGSizeZero)) size = CGSizeMake(1, 1);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+}
+
++ (void)beginImageContextImage:(UIImage *)image
+{
+    CGSize size = image.size;
+    if (CGSizeEqualToSize(size, CGSizeZero)) size = CGSizeMake(1, 1);
+    UIGraphicsBeginImageContextWithOptions(size, NO, image.scale);
+    [maybe(image, UIImage) drawAtPoint:CGPointMake(0, 0)];
+}
+
++ (UIImage *)endImageContext
+{
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 #pragma mark - 產生純色圖
 + (UIImage *)makePureColorImage:(CGSize)size
                           Color:(UIColor *)color
 {
-    if (![color isKindOfClass:[UIColor class]]) {
-        color = [UIColor blackColor];
+    {
+        color = maybe(color, UIColor);
+        if (!color) color = [UIColor blackColor];
     }
     
-    //開始繪圖
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [UIImage beginImageContextSize:size];
     
     {
         [color set];
         UIRectFill(CGRectMake(0, 0, size.width, size.height));
     }
     
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 產生字圖
@@ -41,16 +61,16 @@
                       attributes:fontDictionary
                          context:nil].size;
     
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-    [[UIColor clearColor] set];
-    UIRectFill(CGRectMake(0, 0, size.width, size.height));
+    [UIImage beginImageContextSize:size];
     
-    [string drawAtPoint:CGPointZero withAttributes:fontDictionary];
+    {
+        [[UIColor clearColor] set];
+        UIRectFill(CGRectMake(0, 0, size.width, size.height));
+        
+        [string drawAtPoint:CGPointZero withAttributes:fontDictionary];
+    }
     
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 產生漸層圖
@@ -60,8 +80,7 @@
                         Colors:(NSArray *)colors
                       Location:(NSArray *)locations
 {
-    //開始繪圖
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [UIImage beginImageContextSize:size];
     
     {
         //取出顏色的資訊
@@ -92,27 +111,29 @@
         CGColorSpaceRelease(colorSpaceRef);
         
         //繪製漸層線條
-        CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), gradient, startPoint, endPoint, 0);
+        CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(),
+                                    gradient,
+                                    startPoint,
+                                    endPoint,
+                                    0);
         CGGradientRelease(gradient);
     }
     
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 拍圖
 + (UIImage *)makeImageWithView:(UIView *)view
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0);
+    CGSize size = view.bounds.size;
     
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [UIImage beginImageContextSize:size];
     
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    {
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    }
     
-    return img;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 貼圖
@@ -120,22 +141,13 @@
       BackgroundImage:(UIImage *)backgroundImage
                Origin:(CGPoint)origin
 {
-    //畫布設定
-    UIGraphicsBeginImageContextWithOptions(backgroundImage.size, NO, backgroundImage.scale);
+    [UIImage beginImageContextImage:backgroundImage];
     
     {
-        //畫上背景
-        [backgroundImage drawAtPoint:CGPointMake(0, 0)];
-        
-        //畫上增加圖
         [image drawAtPoint:origin];
     }
     
-    //將影像傳回
-    UIImage *imagex = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return imagex;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 混合
@@ -151,48 +163,45 @@
                    MainImage:(UIImage *)mainImage
                         Mode:(CGBlendMode)mode
 {
-    UIImage *completeImage = nil;
+    if (!maybe(mainImage, UIImage)) return nil;
+    if (!maybe(textureImage, UIImage)) return mainImage;
     
-    if (mainImage != nil && textureImage != nil) {
-        UIGraphicsBeginImageContextWithOptions(mainImage.size, NO, [UIScreen mainScreen].scale);
-        
-        //設定參考範圍
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextScaleCTM(context, 1, -1);
-        
-        CGRect region = CGRectMake(0, 0, mainImage.size.width, mainImage.size.height);
-        CGContextTranslateCTM(context, 0, -region.size.height);
-        CGContextSaveGState(context);
-        
-        //可以有保留透明背景的效果
-        CGContextClipToMask(context, region, mainImage.CGImage);
-        
-        //將材質紋理與原影像混和
-        CGContextDrawImage(context, region, textureImage.CGImage);
-        CGContextRestoreGState(context);
-        CGContextSetBlendMode(context, mode);
-        CGContextDrawImage(context, region, mainImage.CGImage);
-        
-        //將影像指定給image
-        completeImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-    }
+    [UIImage beginImageContextImage:mainImage];
     
-    return completeImage;
+    //設定參考範圍
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextScaleCTM(context, 1, -1);
+    
+    CGRect region = CGRectMake(0, 0, mainImage.size.width, mainImage.size.height);
+    CGContextTranslateCTM(context, 0, -region.size.height);
+    CGContextSaveGState(context);
+    
+    //可以有保留透明背景的效果
+    CGContextClipToMask(context, region, mainImage.CGImage);
+    
+    //將材質紋理與原影像混和
+    CGContextDrawImage(context, region, textureImage.CGImage);
+    CGContextRestoreGState(context);
+    CGContextSetBlendMode(context, mode);
+    CGContextDrawImage(context, region, mainImage.CGImage);
+    
+    return [UIImage endImageContext];
 }
 
 + (UIImage *)maskImage:(UIImage *)image
-             withMask:(UIImage *)mask
+              withMask:(UIImage *)mask
 {
     CGImageRef imgRef = [image CGImage];
     CGImageRef maskRef = [mask CGImage];
-    CGImageRef actualMask = CGImageMaskCreate(CGImageGetWidth(maskRef),
-                                              CGImageGetHeight(maskRef),
-                                              CGImageGetBitsPerComponent(maskRef),
-                                              CGImageGetBitsPerPixel(maskRef),
-                                              CGImageGetBytesPerRow(maskRef),
-                                              CGImageGetDataProvider(maskRef), NULL, false);
+    
+    CGImageRef actualMask =
+    CGImageMaskCreate(CGImageGetWidth(maskRef),
+                      CGImageGetHeight(maskRef),
+                      CGImageGetBitsPerComponent(maskRef),
+                      CGImageGetBitsPerPixel(maskRef),
+                      CGImageGetBytesPerRow(maskRef),
+                      CGImageGetDataProvider(maskRef), NULL, false);
+    
     CGImageRef masked = CGImageCreateWithMask(imgRef, actualMask);
     UIImage *completeImage = [UIImage imageWithCGImage:masked];
     
@@ -204,16 +213,18 @@
 
 #pragma mark - 圓角
 + (UIImage *)addRoundedImage:(UIImage *)image
-                      Corners:(UIRectCorner)corners
-                       Radius:(float)radius
+                     Corners:(UIRectCorner)corners
+                      Radius:(float)radius
 {
     //http://stackoverflow.com/questions/4847163/round-two-corners-in-uiview
     
     //下面兩個角導角
     //corners >> UIRectCornerBottomLeft | UIRectCornerBottomRight
     
+    CGRect rect = {CGPointZero, image.size};
+    
     UIBezierPath *maskPath =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, image.size.width, image.size.height)
+    [UIBezierPath bezierPathWithRoundedRect:rect
                           byRoundingCorners:corners
                                 cornerRadii:CGSizeMake(radius, radius)];
     return [self clipImage:image
@@ -225,11 +236,12 @@
                    Size:(CGSize)size
 {
     UIGraphicsBeginImageContextWithOptions(size, 0, image.scale);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     
-    return reSizeImage;
+    {
+        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    }
+    
+    return [UIImage endImageContext];
 }
 
 +(UIImage *)reSizeImage:(UIImage *)image
@@ -241,28 +253,35 @@
                            Size:CGSizeMake(size.width * scale, size.height * scale)];
 }
 
+#pragma mark - 旋轉
++ (UIImage *)rotateImage:(UIImage *)image
+             Orientation:(UIImageOrientation)orientation
+{
+    return
+    [UIImage imageWithCGImage:image.CGImage
+                        scale:image.scale
+                  orientation:orientation];
+}
+
 #pragma mark - 改顏色
 + (UIImage *)changeImage:(UIImage *)image
                    Color:(UIColor *)color
 {
     UIGraphicsBeginImageContextWithOptions(image.size, 0, image.scale);
     
-    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    {
+        CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextClipToMask(context, rect, image.CGImage);
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        CGContextFillRect(context, rect);
+    }
+    //畫出來是上下顛倒的
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClipToMask(context, rect, image.CGImage);
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, rect);
-    
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImage *flippedImage =
-    [UIImage imageWithCGImage:img.CGImage
-                        scale:image.scale
-                  orientation:UIImageOrientationDownMirrored];
-    
-    return flippedImage;
+    return
+    [UIImage rotateImage:[UIImage endImageContext]
+             Orientation:UIImageOrientationDownMirrored];
 }
 
 #pragma mark - 切圖
@@ -276,9 +295,7 @@
                                  image.size.width,
                                  image.size.height)];
     
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
+    return [UIImage endImageContext];
 }
 
 + (UIImage *)clipImage:(UIImage *)image
@@ -286,17 +303,14 @@
 {
     //http://stackoverflow.com/questions/16142743/clip-uiimage-with-uibezierpath-asynchronously
     
-    UIGraphicsBeginImageContextWithOptions(image.size, 0, image.scale);
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
     
-    //path
-    //UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(self.cornerRadius, self.cornerRadius)];
-    [path addClip];
+    {
+        [path addClip];//必須比下一行先執行
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    }
     
-    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-    
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
+    return [UIImage endImageContext];
 }
 
 #pragma mark - 資料處理
@@ -304,14 +318,8 @@
 {
     NSMutableArray *valuesArray = [NSMutableArray array];
     for (int k = 0; k < [colorArray count]; k++) {
-        
-        UIColor *aColor = colorArray[k];
-        if ([aColor isKindOfClass:[UIColor class]]) {
-            [valuesArray addObjectsFromArray:[UIColor valuesFromColor:aColor]];
-        }
-        else {
-            [valuesArray addObjectsFromArray:[UIColor valuesFromColor:[UIColor blackColor]]];
-        }
+        UIColor *color = maybeDefault(colorArray[k], UIColor, [UIColor blackColor]);
+        [valuesArray addObjectsFromArray:[UIColor valuesFromColor:color]];
     }
     return valuesArray;
 }

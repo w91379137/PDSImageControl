@@ -54,6 +54,10 @@
 + (UIImage *)reSizeImage:(UIImage *)image
                maxLength:(CGFloat)length;
 
+#pragma mark - 旋轉
++ (UIImage *)rotateImage:(UIImage *)image
+             Orientation:(UIImageOrientation)orientation;
+
 #pragma mark - 改顏色
 + (UIImage *)changeImage:(UIImage *)image
                    Color:(UIColor *)color;
