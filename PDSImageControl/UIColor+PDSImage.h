@@ -6,7 +6,7 @@
 //  Copyright © 2016年 w91379137. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PDSImageControl_objc.h"
 
 @interface UIColor (PDSImage)
 

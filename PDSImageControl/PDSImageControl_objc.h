@@ -13,7 +13,8 @@
 
 #import "PDSSetting.h"
 
-#import "PDSImageControl.h"
 #import "UIColor+PDSImage.h"
+#import "UIImage+PDSImage.h"
+#import "PDSImageControl.h"
 
 #endif /* PDSImageControl_objc_h */

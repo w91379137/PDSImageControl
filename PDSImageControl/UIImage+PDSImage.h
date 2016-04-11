@@ -4,7 +4,7 @@
 //  Created by w91379137 on 2016/1/22.
 //
 
-#import <UIKit/UIKit.h>
+#import "PDSImageControl_objc.h"
 
 @interface UIImage (PDSImage)
 
